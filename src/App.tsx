@@ -414,7 +414,7 @@ function App() {
                     width: "95%",
                     height: "70vh",
                     textAlign: "center",
-                    backgroundColor: "#f0f0f0",
+                    backgroundColor: "#F9F9F9",
                     borderRadius: 5,
                     boxShadow: "5px 6px 5px gray",
                     border: "1px solid gray",
