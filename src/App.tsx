@@ -382,9 +382,36 @@ function App() {
                   style={{ width: "100%" }}
                 />
               </div>
-              <div style={{ width: "10vw", paddingTop: 10 }}>
-                <button onClick={(e) => startTrade()}>Start Trade</button>&nbsp;
-                <button onClick={(e) => stopTrade()}>Stop Trade</button>
+              <div
+                style={{
+                  width: "10vw",
+                  paddingTop: 10,
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
+              >
+                <button
+                  onClick={(e) => startTrade()}
+                  style={{
+                    backgroundColor: "#22BD00",
+                    border: "1px solid silver",
+                    borderRadius: 5,
+                  }}
+                >
+                  Start Trade
+                </button>
+                &nbsp;
+                <button
+                  onClick={(e) => stopTrade()}
+                  style={{
+                    backgroundColor: "#BD1F00",
+                    border: "1px solid silver",
+                    borderRadius: 5,
+                    color: "#fff",
+                  }}
+                >
+                  Stop Trade
+                </button>
               </div>
             </div>
             <div
@@ -416,7 +443,7 @@ function App() {
                     textAlign: "center",
                     backgroundColor: "#F9F9F9",
                     borderRadius: 5,
-                    boxShadow: "5px 6px 5px gray",
+                    boxShadow: "5px 6px 5px #C1C1C1",
                     border: "1px solid gray",
                   }}
                 >
