@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import CryptoJS from "crypto-js";
@@ -19,6 +19,7 @@ function App() {
     { value: "EMA", label: "Exponencial Móvel" },
   ];
   const [trade, setTrade] = useState([]);
+  const [walet, setWalet] = useState([]);
   const [symbol, setSymbol] = useState("");
   const [strategy, setStrategy] = useState("");
   const [buyPrice, setBuyPrice] = useState("0.0");
@@ -165,6 +166,11 @@ function App() {
     }
   };
 
+  const accountWalet = () => {
+    const result = axios.get(`${api}/api/v3/account`);
+    console.log(result);
+  };
+
   const calcSMA = (candles: []) => {
     const closes = candles.map((c) => parseFloat(c[4]));
     const sum: number = closes.reduce((a, b) => a + b);
@@ -209,6 +215,10 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    //accountWalet();
+  }, []);
+
   return (
     <>
       <header
@@ -224,7 +234,7 @@ function App() {
         Sistema de Bot para Crypto Moedas
       </header>
       <main style={{ width: "99vw" }}>
-        <div className='container'>
+        <div className="container">
           <div style={{ width: "99%", height: "40px" }}>
             <div>
               <h2>Trade</h2>
@@ -290,7 +300,7 @@ function App() {
               >
                 <label>Preço de Compra</label>
                 <input
-                  type='number'
+                  type="number"
                   value={buyPrice}
                   onInput={(e) =>
                     setBuyPrice((e.target as HTMLInputElement).value)
@@ -306,7 +316,7 @@ function App() {
               >
                 <label>Preço de Venda</label>
                 <input
-                  type='number'
+                  type="number"
                   value={sellPrice}
                   onInput={(e) =>
                     setSellPrice((e.target as HTMLInputElement).value)
@@ -322,7 +332,7 @@ function App() {
               >
                 <label>Quantidade de modeda</label>
                 <input
-                  type='number'
+                  type="number"
                   value={quantity}
                   onInput={(e) =>
                     setQuantity((e.target as HTMLInputElement).value)
@@ -338,7 +348,7 @@ function App() {
               >
                 <label>API KEY</label>
                 <input
-                  type='text'
+                  type="text"
                   value={apiKey}
                   onInput={(e) =>
                     setApiKey((e.target as HTMLInputElement).value)
@@ -354,7 +364,7 @@ function App() {
               >
                 <label>SECRET KEY</label>
                 <input
-                  type='password'
+                  type="password"
                   value={secretKey}
                   onInput={(e) =>
                     setSecretKey((e.target as HTMLInputElement).value)
@@ -372,7 +382,7 @@ function App() {
                   Timer Request (milliseconds)
                 </label>
                 <input
-                  type='number'
+                  type="number"
                   value={timerRequest}
                   onInput={(e) =>
                     setTimerRequest((e.target as HTMLInputElement).value)
@@ -434,7 +444,7 @@ function App() {
             >
               <div style={{ width: "99%" }}>
                 <div style={{ width: "99%", textAlign: "center" }}>
-                  <h3>Log Trade</h3>
+                  <h3>Log Trade {symbol}</h3>
                 </div>
                 <div
                   style={{
